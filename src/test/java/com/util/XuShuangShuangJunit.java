@@ -59,7 +59,7 @@ public abstract class XuShuangShuangJunit extends AbstractXSJunit
     {
         for(Class clazz : allTestCaseClass)
         {
-            System.out.println("TESTING CLASS :" + clazz.getName() + "  It's  " + testClass++);
+            System.out.println("TESTING CLASS :" + clazz.getName() + "  It's  " + testClass+1);
             runAllTest(clazz);
         }
     }
@@ -83,7 +83,6 @@ public abstract class XuShuangShuangJunit extends AbstractXSJunit
         {
             if(method.getName().startsWith("test"))
             {
-                System.out.println("TESTING :" + method);
                 list.add(method);
             }
         }
