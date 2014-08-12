@@ -39,7 +39,6 @@ public class AbstractXSJunit
     
     public void outputFailResult(Object expectedResult, Object actualResult)
     {
-         testFail++;
          consequence = false;
          System.err.println(" ERROR  EXCEPTED : " 
                  + expectedResult + " BUT ACTUAL : " + actualResult);  
@@ -57,6 +56,7 @@ public class AbstractXSJunit
     {
         if(!expectedResult.equals(actualResult))
         {
+            testFail++;
             outputFailResult(expectedResult, actualResult);
         }
         else
