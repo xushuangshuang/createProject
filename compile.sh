@@ -6,7 +6,7 @@ echo "COMPILE START"
 
 mkdir -p target/classes target/test-classes 
 
-CLASSPATH="target/class;target/test-classes"
+CLASSPATH="target/classes;target/test-classes"
 
 [[ -d lib ]] && for WEBFILE in lib/*.jar; do
 
@@ -30,8 +30,8 @@ CLASSPATH_RUNTIME="$CLASSPATH_RUNTIME;$RUNTIMEFILE"
 
 done
 
-find src/main/java/ -maxdepth 3 -type f | xargs javac -d target/classes/ -Xlint:unchecked -classpath "$CLASSPATH_WEB"
+find src/main/java/ -maxdepth 3 -type f | xargs javac -encoding "UTF-8" -d target/classes/ -Xlint:unchecked -classpath "$CLASSPATH_WEB"
 
-find src/test/java/ -maxdepth 3 -type f | xargs javac -d target/test-classes -classpath "$CLASSPATH_TEST"
+find src/test/java/ -maxdepth 3 -type f | xargs javac -encoding "UTF-8" -d target/test-classes/ -classpath "$CLASSPATH_TEST"
 
 echo "COMPILE DONE"
