@@ -1,2 +1,3 @@
 #!/bin/sh
-rm -r target/
+
+rm -rf target/
