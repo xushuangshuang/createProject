@@ -107,7 +107,7 @@ public abstract class XuShuangShuangJunit extends AbstractXSJunit
         else
         {
             System.out.println("TEST SUM " + testSum 
-                    + "  TEST FAIL " + (testSum - testSuccess));
+                    + "  TEST FAIL " + testFail);
             System.out.println("TEST FAIL");
         }
     }
