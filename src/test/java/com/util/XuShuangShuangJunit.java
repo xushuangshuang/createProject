@@ -8,6 +8,10 @@ import java.util.Set;
 
 public abstract class XuShuangShuangJunit extends AbstractXSJunit
 {
+    static int testSuccess = 0;
+    static int testClass = 0;
+    static int testSum = 0;
+
     public static void main(String[] args)
     {
         try
@@ -39,9 +43,9 @@ public abstract class XuShuangShuangJunit extends AbstractXSJunit
         String testPackage;
         for(int paraTestPackage = 0; paraTestPackage< args.length; paraTestPackage++)
         {
+            testPackage = args[paraTestPackage];
             System.out.println("TESTING  : " + paraTestPackage+1 
                     + "  PACKAGE " + args[paraTestPackage]);
-            testPackage = args[paraTestPackage];
             getAllTestCaseClass(testPackage);    
         }
     }
@@ -59,7 +63,9 @@ public abstract class XuShuangShuangJunit extends AbstractXSJunit
     {
         for(Class clazz : allTestCaseClass)
         {
-            System.out.println("TESTING CLASS :" + clazz.getName() + "  It's  " + testClass+1);
+            testClass++;
+            System.out.println("TESTING CLASS :" + clazz.getName() 
+                    + "  It's  " + testClass);
             runAllTest(clazz);
         }
     }
@@ -81,6 +87,7 @@ public abstract class XuShuangShuangJunit extends AbstractXSJunit
 
         for(Method method : methods)
         {
+            testSum++;
             if(method.getName().startsWith("test"))
             {
                 list.add(method);
@@ -88,4 +95,20 @@ public abstract class XuShuangShuangJunit extends AbstractXSJunit
         }
         return list;
     }   
+    
+    public static void outputTestConsequence(boolean consequence)
+    {
+        if(consequence)
+        {
+            System.out.println("TEST CLASS " + testClass 
+                    + " TEST SUM " + testSum);
+            System.out.println("TEST SUCCESS");
+        }
+        else
+        {
+            System.out.println("TEST SUM " + testSum 
+                    + "  TEST FAIL " + (testSum - testSuccess));
+            System.out.println("TEST FAIL");
+        }
+    }
 }

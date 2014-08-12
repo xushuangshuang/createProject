@@ -3,8 +3,6 @@ package com.util;
 public class AbstractXSJunit 
 {   
     static Boolean consequence = true;
-    static int testSuccess = 0; 
-    static int testClass = 0;
     static int testFail = 0;
 
     public void assertEquals(String exceptedResult, String actualResult)
@@ -14,17 +12,17 @@ public class AbstractXSJunit
 
     public void assertNull(Object actualResult)
     {
-         equals(null, actualResult);
+        equals(null, actualResult);
     }
 
     public void assertTrue(boolean actualResult)
     {
-         equals(true, actualResult);
+        equals(true, actualResult);
     }
 
     public void assertFalse(boolean actualResult)
     {
-         equals(false, actualResult);
+        equals(false, actualResult);
     }
 
     public void assertArrayEquals(Object[] exceptedResult, Object[] actualResult)
@@ -69,15 +67,4 @@ public class AbstractXSJunit
         return false;
     }
 
-    public static void outputTestConsequence(boolean consequence)
-    {
-        if(consequence)
-        {
-            System.out.println("TEST SUCCESS");
-        }
-        else
-        {
-            System.out.println("TEST FAIL");
-        }
-    }
 }
