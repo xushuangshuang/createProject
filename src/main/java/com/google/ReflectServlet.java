@@ -22,7 +22,8 @@ public class ReflectServlet
     
     public String upClassFirstChar(String className)
     {
-        return null;
+        className = className.substring(0,1).toUpperCase() + className.substring(1);
+        return className;
     }
 }
 
