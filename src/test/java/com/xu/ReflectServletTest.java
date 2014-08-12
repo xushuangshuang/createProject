@@ -1,6 +1,6 @@
 package com.xu;
 
-import com.util.XuShuangShuangJunit;
+import com.util.*;
 
 public class ReflectServletTest extends XuShuangShuangJunit
 {

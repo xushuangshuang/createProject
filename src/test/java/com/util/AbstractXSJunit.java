@@ -1,99 +1,75 @@
 package com.util;
 
-import java.util.List;
-import java.util.ArrayList;
-import java.lang.reflect.Method;
-import org.reflections.Reflections;
-import java.util.Set;
-
-public abstract class AbstractXSJunit
-{
+public class AbstractXSJunit 
+{   
     static Boolean consequence = true;
     static int testSuccess = 0; 
-    static int testFail = 0;
     static int testClass = 0;
+    static int testFail = 0;
 
-    public static void main(String[] args)
+    public void assertEquals(String exceptedResult, String actualResult)
     {
-        try
-        {
-            assertInput(args);
-            outputTestConsequence(consequence);
-        }
-        catch(Exception e)
-        {
-            System.out.println(e);
-        }
+        equals(exceptedResult, actualResult);        
     }
 
-    protected static void assertInput(String[] args) throws Exception
+    public void assertNull(Object actualResult)
     {
-        if(args.length > 0)
+         equals(null, actualResult);
+    }
+
+    public void assertTrue(boolean actualResult)
+    {
+         equals(true, actualResult);
+    }
+
+    public void assertFalse(boolean actualResult)
+    {
+         equals(false, actualResult);
+    }
+
+    public void assertArrayEquals(Object[] exceptedResult, Object[] actualResult)
+    {
+        if(((Integer)exceptedResult.length).equals((Integer)actualResult.length))
         {
-            getAllTestPackage(args);
+            ergodicArray(exceptedResult, actualResult);
         }
         else
         {
-            System.out.println("DO not input testpackage");
-        }
-    }
-
-
-    protected static void getAllTestPackage(String[] args) throws Exception
-    {
-        String testPackage;
-        for(int paraTestPackage = 0; paraTestPackage< args.length; paraTestPackage++)
-        {
-            System.out.println("TESTING  : " + paraTestPackage);
-            testPackage = args[paraTestPackage];
-            getAllTestCaseClass(testPackage);    
+            outputFailResult(exceptedResult, actualResult);
         }
     }
     
-    protected static void getAllTestCaseClass(String testPackage) throws Exception
+    public void outputFailResult(Object expectedResult, Object actualResult)
     {
-        Reflections reflections = new Reflections(testPackage);
-        Set<Class<? extends AbstractXSJunit>> allTestCaseClass = 
-                reflections.getSubTypesOf(AbstractXSJunit.class);
-        getTestCaseClass(allTestCaseClass);
+         testFail++;
+         consequence = false;
+         System.err.println(" ERROR  EXCEPTED : " 
+                 + expectedResult + " BUT ACTUAL : " + actualResult);  
     }
 
-    protected static void getTestCaseClass(Set<Class<? extends AbstractXSJunit>> allTestCaseClass) throws Exception
+    private void ergodicArray(Object[] exceptedResult, Object[] actualResult)
     {
-        for(Class clazz : allTestCaseClass)
+        for(int index = 0; index < exceptedResult.length; index++)
         {
-            System.out.println("TESTING CLASS :" + clazz.getName() + "It's" + testClass++);
-            runAllTest(clazz);
-        }
-    }
-    protected static void runAllTest(Class clazz) throws Exception
-    {
-        for(Method method : getAllMethods(clazz))
-        {
-            System.out.println("TESTING method :" + method);
-            Object obj = clazz.newInstance();
-            method.invoke(obj);
+            equals(exceptedResult[index], actualResult[index]);
         }
     }
 
-    protected static List<Method> getAllMethods(Class clazz)
+    public boolean equals(Object expectedResult, Object actualResult) 
     {
-        List<Method> list = new ArrayList<Method>();
-
-        Method[] methods = clazz.getDeclaredMethods();
-
-        for(Method method : methods)
+        if(!expectedResult.equals(actualResult))
         {
-            if(method.getName().startsWith("test"))
-            {
-                System.out.println("TESTING :" + method);
-                list.add(method);
-            }
+            outputFailResult(expectedResult, actualResult);
         }
-        return list;
+        else
+        {
+            return true;
+        }
+
+        return false;
     }
 
-    protected static void outputTestConsequence(boolean consequence)
+    public static void outputTestConsequence(boolean consequence)
     {
         if(consequence)
         {
@@ -103,13 +79,5 @@ public abstract class AbstractXSJunit
         {
             System.out.println("TEST FAIL");
         }
-    }   
-    protected void outputFailResult(Object expectedResult, Object actualResult)
-    {
-         testFail++;
-         consequence = false;
-         System.err.println(" ERROR  EXCEPTED : " 
-                 + expectedResult + " BUT ACTUAL : " + actualResult);  
     }
-
 }
