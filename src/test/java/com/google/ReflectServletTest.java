@@ -23,4 +23,9 @@ public class ReflectServletTest extends XuShuangShuangJunit
         String className = reflectServlet.upClassFirstChar("contact");
         assertEquals("ContactAction", className);
     }
+    public void test_判断Uri的合法性()
+    {
+        boolean uriLegal = reflectServlet.assertUriLegal("/reflect/contact/");
+        assertTrue(uriLegal);
+    }
 }

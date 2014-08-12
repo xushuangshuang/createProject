@@ -27,5 +27,9 @@ public class ReflectServlet
         className = className.substring(0,1).toUpperCase() + className.substring(1);
         return className + suffix;
     }
+    public boolean assertUriLegal(String uri)
+    {
+        return false;
+    }
 }
 
