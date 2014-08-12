@@ -8,6 +8,8 @@ import javax.servlet.ServletException;
 
 public class ReflectServlet
 {
+    private String suffix = "Action";
+
     public void service(HttpServletRequest req, HttpServletResponse resp)
         throws ServletException, IOException
     {
@@ -23,7 +25,7 @@ public class ReflectServlet
     public String upClassFirstChar(String className)
     {
         className = className.substring(0,1).toUpperCase() + className.substring(1);
-        return className;
+        return className + suffix;
     }
 }
 

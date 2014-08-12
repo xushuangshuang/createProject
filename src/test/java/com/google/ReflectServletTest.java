@@ -21,6 +21,6 @@ public class ReflectServletTest extends XuShuangShuangJunit
     public void test_将获取到的类名首字母大写()
     {
         String className = reflectServlet.upClassFirstChar("contact");
-        assertEquals("Contact", className);
+        assertEquals("ContactAction", className);
     }
 }
