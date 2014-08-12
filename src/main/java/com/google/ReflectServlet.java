@@ -13,6 +13,11 @@ public class ReflectServlet
     {
 
     }
+    public String[] resolveURI(String uri)
+    {
+        String[] uriParts = uri.split("/");
+        return uriParts; 
+    }
 
 }
 
