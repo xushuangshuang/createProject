@@ -10,16 +10,7 @@ CLASSPATH_RUNTIME="$CLASSPATH;$RUNTIMEFILE"
 
 done
 
-read -p "PLEASE INPUT TEST CASE PACKAGE :" PACKAGE
-
-if [[ "$PACKAGE" = "" ]]; then
-
-    echo "PACKAGE IS NULL"
-
-    exit
-fi
-
-java -classpath "$CLASSPATH_RUNTIME" com.util.XuShuangShuangJunit $PACKAGE
+java -classpath "$CLASSPATH_RUNTIME" com.util.XuShuangShuangJunit "com.xu.ReflectServletTest"
 
 RETVAL=$?
 
