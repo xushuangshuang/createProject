@@ -1,4 +1,4 @@
-package com.google;
+package com.google.servlet;
 
 import com.util.XuShuangShuangJunit;
 

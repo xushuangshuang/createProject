@@ -1,4 +1,4 @@
-package com.google;
+package com.google.servlet;
 
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
